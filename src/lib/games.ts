@@ -65,7 +65,7 @@ function normalizeCategory(raw: string): GameCategory {
 export function rowsToGames(rows: string[][]): Game[] {
   if (rows.length === 0) return [];
 
-  const header = rows[0].map((cell) => cell.trim().toLowerCase());
+  const header = (rows[0] ?? []).map((cell) => cell.trim().toLowerCase());
   const looksLikeHeader = header.includes("name") || header.includes("category");
   const dataRows = looksLikeHeader ? rows.slice(1) : rows;
 
@@ -91,7 +91,7 @@ export function rowsToGames(rows: string[][]): Game[] {
 }
 
 export async function fetchGames(signal?: AbortSignal): Promise<Game[]> {
-  const response = await fetch(GAMES_SHEET_CSV_URL, { signal });
+  const response = await fetch(GAMES_SHEET_CSV_URL, signal ? { signal } : {});
   if (!response.ok) {
     throw new Error(`Sheet request failed (${response.status})`);
   }
