@@ -3,6 +3,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import heroImage from "@/assets/hero.jpg";
 import { useSettings } from "@/hooks/use-cms";
 import { Button } from "@/components/ui/button";
+import { NameLogo } from "./NameLogo";
 import { SmartLink } from "./SmartLink";
 
 export function Hero() {
@@ -30,7 +31,10 @@ export function Hero() {
         </p>
 
         <h1 className="reveal-up mt-7 text-5xl font-black leading-[1.05] sm:text-6xl md:text-8xl">
-          <span className="shimmer-text">{settings.name}</span>
+          <NameLogo
+            className="mx-auto h-auto w-full max-w-[300px] sm:max-w-md md:max-w-lg"
+            fallbackClassName="shimmer-text"
+          />
         </h1>
 
         <p className="reveal-up mt-5 font-display text-xl font-semibold tracking-wide text-foreground/90 sm:text-2xl md:text-3xl">
