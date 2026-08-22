@@ -1,10 +1,11 @@
 import { Clock, Instagram, MapPin, MessageCircle, Phone } from "lucide-react";
-import { site } from "@/config/site";
+
+import { useSettings } from "@/hooks/use-cms";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "./SectionHeading";
 
 export function Contact() {
-  const { contact } = site;
+  const settings = useSettings();
 
   return (
     <section id="contact" className="relative py-24">
@@ -24,7 +25,7 @@ export function Contact() {
                   <h3 className="font-display text-sm font-bold uppercase tracking-widest text-primary">
                     Address
                   </h3>
-                  <p className="mt-1 text-muted-foreground">{contact.address}</p>
+                  <p className="mt-1 text-muted-foreground">{settings.address}</p>
                 </div>
               </li>
               <li className="flex gap-4">
@@ -34,7 +35,7 @@ export function Contact() {
                     Opening hours
                   </h3>
                   <dl className="mt-2 space-y-1">
-                    {contact.hours.map((slot) => (
+                    {settings.hours.map((slot) => (
                       <div key={slot.days} className="flex gap-3 text-muted-foreground">
                         <dt className="w-24 shrink-0 font-semibold text-foreground/80">
                           {slot.days}
@@ -52,16 +53,10 @@ export function Contact() {
                     Call us
                   </h3>
                   <a
-                    href={contact.phoneHref}
+                    href={settings.phoneHref}
                     className="mt-1 block text-muted-foreground transition-colors hover:text-primary"
                   >
-                    {contact.phone}
-                  </a>
-                  <a
-                    href={`mailto:${contact.email}`}
-                    className="block text-muted-foreground transition-colors hover:text-primary"
-                  >
-                    {contact.email}
+                    {settings.phone}
                   </a>
                 </div>
               </li>
@@ -69,13 +64,13 @@ export function Contact() {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild variant="realm">
-                <a href={contact.whatsapp} target="_blank" rel="noreferrer">
+                <a href={settings.whatsapp} target="_blank" rel="noreferrer">
                   <MessageCircle className="size-4" />
                   WhatsApp
                 </a>
               </Button>
               <Button asChild variant="realmOutline">
-                <a href={contact.instagram} target="_blank" rel="noreferrer">
+                <a href={settings.instagram} target="_blank" rel="noreferrer">
                   <Instagram className="size-4" />
                   Instagram
                 </a>
@@ -85,8 +80,8 @@ export function Contact() {
 
           <div className="card-realm overflow-hidden rounded-xl">
             <iframe
-              title="Map to Loki's Realm gaming café"
-              src={contact.mapEmbedSrc}
+              title={`Map to ${settings.name} gaming café`}
+              src={settings.mapEmbedSrc}
               loading="lazy"
               className="h-80 w-full border-0 opacity-90 lg:h-full"
             />

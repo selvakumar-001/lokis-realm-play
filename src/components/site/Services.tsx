@@ -1,14 +1,18 @@
 import { Dices, Gamepad2, Plane } from "lucide-react";
-import { site } from "@/config/site";
+
+import type { ServiceIcon } from "@/lib/content";
+import { usePricing } from "@/hooks/use-cms";
 import { SectionHeading } from "./SectionHeading";
 
-const icons = {
+const icons: Record<ServiceIcon, typeof Gamepad2> = {
   gamepad: Gamepad2,
   steering: Plane,
   dice: Dices,
 };
 
 export function Services() {
+  const services = usePricing();
+
   return (
     <section id="services" className="relative py-24">
       <div className="absolute inset-x-0 top-0 gold-rule opacity-40" />
@@ -20,7 +24,7 @@ export function Services() {
         />
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {site.services.map((service) => {
+          {services.map((service) => {
             const Icon = icons[service.icon];
             return (
               <article

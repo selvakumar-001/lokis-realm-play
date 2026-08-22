@@ -1,21 +1,32 @@
+/**
+ * GALLERY
+ * -------
+ * Photos come from the Gallery sheet tab (ImageURL | Caption).
+ * Falls back to the bundled photos when the tab is empty/unset.
+ */
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
 import gallery5 from "@/assets/gallery-5.jpg";
 import gallery6 from "@/assets/gallery-6.jpg";
+import type { GalleryPhoto } from "@/lib/content";
+import { useGallery } from "@/hooks/use-cms";
 import { SectionHeading } from "./SectionHeading";
 
-const photos = [
+const BUNDLED_PHOTOS: GalleryPhoto[] = [
   { src: gallery1, alt: "Players at PS5 stations in the café lounge" },
   { src: gallery2, alt: "Racing simulator rig with triple monitors" },
   { src: gallery3, alt: "Friends around a board game table" },
   { src: gallery4, alt: "Flight simulator setup with yoke and throttle" },
-  { src: gallery5, alt: "Horned helmet neon sign on the café wall" },
+  { src: gallery5, alt: "Neon sign glowing on the café wall" },
   { src: gallery6, alt: "Snack counter with esports posters" },
 ];
 
 export function Gallery() {
+  const sheetPhotos = useGallery();
+  const photos = sheetPhotos.length > 0 ? sheetPhotos : BUNDLED_PHOTOS;
+
   return (
     <section id="gallery" className="relative py-24">
       <div className="mx-auto max-w-6xl px-5">
@@ -23,7 +34,7 @@ export function Gallery() {
         <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-3">
           {photos.map((photo, index) => (
             <figure
-              key={photo.alt}
+              key={`${photo.src}-${index}`}
               className={`group relative overflow-hidden rounded-xl border border-primary/15 ${
                 index === 0 ? "col-span-2 row-span-2" : ""
               }`}

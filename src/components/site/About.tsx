@@ -1,13 +1,15 @@
-import { site } from "@/config/site";
+import { useSettings } from "@/hooks/use-cms";
 import { SectionHeading } from "./SectionHeading";
 
 export function About() {
+  const settings = useSettings();
+
   return (
     <section id="about" className="relative py-24">
       <div className="mx-auto max-w-6xl px-5">
-        <SectionHeading kicker="About the realm" title={site.about.title} />
+        <SectionHeading kicker="About the realm" title={settings.aboutTitle} />
         <div className="mx-auto mt-10 max-w-3xl space-y-5 text-center">
-          {site.about.body.map((paragraph) => (
+          {settings.aboutBody.map((paragraph) => (
             <p key={paragraph} className="text-lg leading-relaxed text-muted-foreground">
               {paragraph}
             </p>
