@@ -1,16 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
+
 import { Header } from "@/components/site/Header";
 import { Hero } from "@/components/site/Hero";
 import { About } from "@/components/site/About";
 import { Services } from "@/components/site/Services";
 import { GamesLibrary } from "@/components/site/GamesLibrary";
+import { EventsTeaser } from "@/components/site/EventsTeaser";
 import { Gallery } from "@/components/site/Gallery";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
 
-const title = "Loki's Realm — Gaming Café | PS5, Racing SIM & Board Games";
+const title = "Trickster — Gaming Café | PS5, Racing SIM & Board Games";
 const description =
-  "Loki's Realm is a Norse-themed gaming café with PS5 stations, racing and flight simulators, and 40+ board games. Mischief-makers welcome.";
+  "Trickster is a gaming café with PS5 stations, car simulators, and a shelf full of board games. Mischief-makers welcome.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,6 +37,7 @@ function Index() {
         <About />
         <Services />
         <GamesLibrary />
+        <EventsTeaser />
         <Gallery />
         <Contact />
       </main>
