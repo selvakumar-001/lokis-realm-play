@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, MessageCircle, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import logoImage from "@/assets/logo.jpg";
+
+import { Button } from "@/components/ui/button";
 import { NAV_LINKS } from "@/config/site";
 import { useSettings } from "@/hooks/use-cms";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -38,11 +39,17 @@ export function Header() {
           <img
             src={settings.logoUrl || logoImage}
             alt={`${settings.name} logo`}
-            className="size-9 shrink-0 rounded-full border border-primary/40 object-cover shadow-[var(--shadow-gold)]"
+            className="size-11 shrink-0 rounded-full border border-primary/40 object-cover shadow-[var(--shadow-gold)]"
           />
+          {/* <NameLogo
+            className="h-10 w-auto max-w-[190px] object-contain sm:h-10 sm:max-w-[230px]"
+            fallbackClassName="whitespace-nowrap font-display text-lg font-bold tracking-wider text-gold-gradient sm:text-xl"
+          /> */}
+
           <span className="font-display text-lg font-bold tracking-wider sm:text-xl">
             <span className="text-gold-gradient">{settings.name}</span>
           </span>
+
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex">
