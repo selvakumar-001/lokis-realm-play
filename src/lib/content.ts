@@ -29,6 +29,8 @@ export type SiteSettings = {
   heroKicker: string;
   heroSub: string;
   heroImageUrl: string;
+  /** Small brand logo in the header; empty → bundled logo asset. */
+  logoUrl: string;
   primaryCtaLabel: string;
   primaryCtaHref: string;
   secondaryCtaLabel: string;
@@ -51,6 +53,7 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   heroKicker: fallbackSite.heroKicker,
   heroSub: fallbackSite.heroSub,
   heroImageUrl: fallbackSite.heroImageUrl,
+  logoUrl: "",
   primaryCtaLabel: fallbackSite.primaryCta.label,
   primaryCtaHref: fallbackSite.primaryCta.href,
   secondaryCtaLabel: fallbackSite.secondaryCta.label,
@@ -117,6 +120,7 @@ function applySettings(rows: string[][]): SiteSettings {
     heroKicker: get("herokicker", DEFAULT_SETTINGS.heroKicker),
     heroSub: get("herosub", DEFAULT_SETTINGS.heroSub),
     heroImageUrl: get("heroimageurl", DEFAULT_SETTINGS.heroImageUrl),
+    logoUrl: get("logourl", DEFAULT_SETTINGS.logoUrl),
     primaryCtaLabel: get("ctaprimarylabel", DEFAULT_SETTINGS.primaryCtaLabel),
     primaryCtaHref: get("ctaprimaryhref", DEFAULT_SETTINGS.primaryCtaHref),
     secondaryCtaLabel: get("ctasecondarylabel", DEFAULT_SETTINGS.secondaryCtaLabel),
@@ -349,7 +353,8 @@ export type CafeEvent = {
   time: string;
   description: string;
   imageUrl: string;
-  link: string;
+  /** Google Form (or any) registration URL — renders the Register button. */
+  registerUrl: string;
 };
 
 /**
@@ -413,7 +418,7 @@ function rowsToEvents(rows: string[][]): CafeEvent[] {
       { candidates: ["time"], fallback: 2 },
       { candidates: ["description", "details", "desc"], fallback: 3 },
       { candidates: ["image", "img", "photo", "poster"], fallback: 4 },
-      { candidates: ["link", "ticket", "rsvp"], fallback: 5 },
+      { candidates: ["register", "form", "rsvp", "ticket", "link"], fallback: 5 },
     ],
     hasHeader,
   );
@@ -436,7 +441,7 @@ function rowsToEvents(rows: string[][]): CafeEvent[] {
         time: pick(cells, timeIdx),
         description: pick(cells, descIdx),
         imageUrl: pick(cells, imgIdx),
-        link: pick(cells, linkIdx),
+        registerUrl: pick(cells, linkIdx),
       } satisfies CafeEvent;
     })
     .filter((event) => event.title !== "" || event.description !== "");

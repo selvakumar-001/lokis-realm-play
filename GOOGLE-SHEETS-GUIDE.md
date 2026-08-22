@@ -82,6 +82,7 @@ Commit and push (or let Lovable sync). Done — from now on, **only edit the She
 | `hero_kicker`      | Small pill above the slogan               | `Gaming Café · Mischief Guaranteed` |
 | `hero_sub`         | Paragraph under the slogan                | `PS5 battles, racing sims…` |
 | `hero_image_url`   | Home page background photo (direct image link) | *(leave blank to keep current)* |
+| `logo_url`         | Small round logo shown in the header (direct image link) | *(leave blank to keep current)* |
 | `cta_primary_label` / `cta_primary_href`     | Main button text / target (`#contact`, `/games`, or full URL) | `Book Now` / `#contact` |
 | `cta_secondary_label` / `cta_secondary_href` | Second button                              | `Explore Games` / `/games` |
 | `about_title`      | About section heading                     | `A Realm for Mischief-Makers` |
@@ -123,14 +124,18 @@ Icon accepts: `gamepad`, `steering` (or anything with sim/racing/car/wheel/fligh
   every filter.
 - **ImageURL** optional — a placeholder art is used when empty.
 
-### 📅 Events tab — columns: `Title | Date | Time | Description | ImageURL | Link`
+### 📅 Events tab — columns: `Title | Date | Time | Description | ImageURL | Register`
 
-| Title            | Date       | Time        | Description                  | ImageURL | Link |
-|------------------|------------|-------------|------------------------------|----------|------|
-| `FIFA Night`     | `22 Aug 2026` | `7 PM onwards` | Knockout tournament…   | *(poster)* | *(optional RSVP/ticket URL)* |
+| Title            | Date       | Time        | Description                  | ImageURL | Register |
+|------------------|------------|-------------|------------------------------|----------|----------|
+| `FIFA Night`     | `22 Aug 2026` | `7 PM onwards` | Knockout tournament…   | *(poster)* | `https://forms.gle/…` |
 
 - **Date formats that work:** `2026-08-22`, `22/08/2026`, `22-08-2026`,
   `22 Aug 2026`, `Aug 22, 2026`. Leave blank for undated posts.
+- **Register** holds the event's Google Form link — each card then shows a gold
+  **Register** button that opens the form in a new tab. Column headers named
+  `Register`, `Form`, `RSVP`, `Ticket` or `Link` all work. Leave blank on any
+  event that doesn't need registration and the button is hidden for it.
 - Events are sorted newest-first and tagged **Upcoming** or **Past** automatically.
 - To remove an event from the site, delete its row.
 

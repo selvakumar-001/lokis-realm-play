@@ -4,7 +4,7 @@
  * Grid of event cards fed by the Events sheet tab.
  * Exports EventCard for reuse in the home-page teaser.
  */
-import { ArrowRight, CalendarX2, Clock, Instagram } from "lucide-react";
+import { CalendarX2, Clock, Instagram, Ticket } from "lucide-react";
 
 import gamePlaceholder from "@/assets/game-placeholder.jpg";
 import { formatEventDate, isEventUpcoming, type CafeEvent } from "@/lib/content";
@@ -114,11 +114,11 @@ export function EventCard({ event }: { event: CafeEvent }) {
           </p>
         )}
 
-        {event.link && (
-          <Button asChild variant="realmOutline" size="sm" className="mt-4 self-start">
-            <a href={event.link} target="_blank" rel="noreferrer">
-              Details
-              <ArrowRight className="size-4" />
+        {event.registerUrl && (
+          <Button asChild variant="realm" size="sm" className="mt-4 self-start">
+            <a href={event.registerUrl} target="_blank" rel="noreferrer">
+              <Ticket className="size-4" />
+              Register
             </a>
           </Button>
         )}
